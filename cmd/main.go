@@ -7,6 +7,7 @@ import (
 
 	"go-rest-api/internal/api"
 	"go-rest-api/internal/dependencies"
+	"go-rest-api/internal/middlewares"
 	"go-rest-api/pkg/config"
 	"go-rest-api/pkg/logger"
 )
@@ -23,7 +24,8 @@ func main() {
 
 	deps := dependencies.NewDependencies()
 	router := api.NewRouter(deps)
-
+	// use midleware
+	RoutesWithCors := middlewares.CORSMiddleware(router)
 	fmt.Printf("Server started at :%s", cg.Port)
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", RoutesWithCors))
 }
