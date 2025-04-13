@@ -21,12 +21,14 @@ func registerArtistsRoutes(mux *http.ServeMux, deps *dependencies.Dependencies) 
 		switch r.Method {
 		case http.MethodGet:
 			id := r.URL.Query().Get("id")
+			find := r.URL.Query().Get("find")
 			if id != "" {
 				deps.ArtistDetailsHandler.GetArtistDetails(w, r)
+			} else if find != "" {
+				deps.SearchHandler.Search(w, r)
 			} else {
 				deps.AllArtistsHandler.GetAllArtists(w, r)
 			}
-
 		case http.MethodPost:
 			deps.FilterHandler.Filter(w, r)
 		default:
