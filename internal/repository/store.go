@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"sync"
 
 	"go-rest-api/internal/models"
@@ -38,4 +39,5 @@ func (s *Store) LoadData() {
 	// fmt.Println("Fetched Locations Data:", s.Locations.Index[0])
 	// fmt.Println("Fetched Dates Data:", s.Dates.Index)
 	// fmt.Println("Fetched Relation Data:", s.Realtions.Index)
+	fmt.Println("seccefully loaded data")
 }
