@@ -21,7 +21,13 @@ func registerArtistsRoutes(mux *http.ServeMux, deps *dependencies.Dependencies) 
 	mux.HandleFunc("/api/artists", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodGet:
-			deps.AllArtistsHandler.GetAllArtists(w, r) // Fetch item by ID
+			id := r.URL.Query().Get("id")
+			if id != "" {
+				deps.ArtistDetailsHandler.GetArtistDetails(w, r)
+			} else {
+				deps.AllArtistsHandler.GetAllArtists(w, r)
+			}
+
 		// case http.MethodPost:
 		// 	deps.ItemHandler.CreateItem(w, r)
 		default:
