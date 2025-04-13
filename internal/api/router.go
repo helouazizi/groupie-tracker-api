@@ -11,7 +11,6 @@ func NewRouter(deps *dependencies.Dependencies) http.Handler {
 
 	// Register routes by domain
 	registerArtistsRoutes(mux, deps)
-	registerItemRoutes(mux, deps)
 	// registerUserRoutes(mux, deps)
 
 	return mux
@@ -30,25 +29,6 @@ func registerArtistsRoutes(mux *http.ServeMux, deps *dependencies.Dependencies) 
 
 		// case http.MethodPost:
 		// 	deps.ItemHandler.CreateItem(w, r)
-		default:
-			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		}
-	})
-}
-
-func registerItemRoutes(mux *http.ServeMux, deps *dependencies.Dependencies) {
-	mux.HandleFunc("/api/items", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case http.MethodGet:
-			if id := r.URL.Query().Get("id"); id != "" { // If an 'id' is provided as a query parameter
-				deps.ItemHandler.GetItemById(w, r) // Fetch item by ID
-			} else {
-				deps.ItemHandler.GetAllItems(w, r) // Fetch all items if no 'id' is provided
-			}
-		case http.MethodPost:
-			deps.ItemHandler.CreateItem(w, r)
-		case http.MethodDelete:
-			deps.ItemHandler.DeleteItem(w, r)
 		default:
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		}
