@@ -8,9 +8,9 @@ import (
 
 type Dependencies struct {
 	// Handlers
-
 	AllArtistsHandler    *handlers.AllArtistsHandler
 	ArtistDetailsHandler *handlers.ArtistsDetailsHandler
+	FilterHandler        *handlers.FilterHandler
 	// UserHandler *handlers.UserHandler
 }
 
@@ -22,6 +22,7 @@ func NewDependencies() *Dependencies {
 	// Instantiate services
 	allartistservice := services.NewAllArtistsService(store)
 	artistDetailsservice := services.NewArtistDetailsService(store)
+	filterservice := services.NewFilterService(store)
 
 	// Instantiate handlers
 	return &Dependencies{
@@ -29,6 +30,7 @@ func NewDependencies() *Dependencies {
 		// UserService:  userService,
 		AllArtistsHandler:    handlers.NewAllArtistsHandler(allartistservice),
 		ArtistDetailsHandler: handlers.NewArtistDetailsService(artistDetailsservice),
+		FilterHandler:        handlers.NewFilterHandler(filterservice),
 		// UserHandler:  userHandler,
 	}
 }

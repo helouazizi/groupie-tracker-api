@@ -27,8 +27,8 @@ func registerArtistsRoutes(mux *http.ServeMux, deps *dependencies.Dependencies) 
 				deps.AllArtistsHandler.GetAllArtists(w, r)
 			}
 
-		// case http.MethodPost:
-		// 	deps.ItemHandler.CreateItem(w, r)
+		case http.MethodPost:
+			deps.FilterHandler.Filter(w, r)
 		default:
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		}

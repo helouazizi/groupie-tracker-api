@@ -25,6 +25,11 @@ func (h *FilterHandler) Filter(w http.ResponseWriter, r *http.Request) {
 		utils.RespondWithError(w, http.StatusBadRequest, "bad request", "some data it incorrect or empty")
 		return
 	}
-	artists := h.Service.Filter(data)
+	artists, err := h.Service.Filter(data)
+	if err != nil {
+		logger.LogWithDetails(err)
+		utils.RespondWithError(w, http.StatusBadRequest, "bad request", "some data it incorrect or empty")
+		return
+	}
 	utils.RespondWithJSON(w, http.StatusOK, artists)
 }
