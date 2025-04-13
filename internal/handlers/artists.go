@@ -15,7 +15,7 @@ func NewAllArtistsHandler(allartistservice *services.AllArtistsService) *AllArti
 	return &AllArtistsHandler{Service: allartistservice}
 }
 
-func (a *AllArtistsHandler) GetAllArtists(w http.ResponseWriter, r *http.Request) {
-	artists := a.Service.GetAllArtists()
+func (h *AllArtistsHandler) GetAllArtists(w http.ResponseWriter, r *http.Request) {
+	artists := h.Service.GetAllArtists()
 	utils.RespondWithJSON(w, http.StatusOK, artists)
 }

@@ -37,3 +37,12 @@ type Relation struct {
 type RelationsApiResponse struct {
 	Index []Relation `json:"index"`
 }
+
+// this struc for artist details
+
+type ArtistDetails struct {
+	ArtistInfo Artist
+	Locations  Location
+	Dates      Date
+	Relations  Relation
+}

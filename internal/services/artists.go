@@ -13,8 +13,8 @@ func NewAllArtistsService(store *repository.Store) *AllArtistsService {
 	return &AllArtistsService{Store: store}
 }
 
-func (a *AllArtistsService) GetAllArtists() []models.Artist {
-	a.Store.Mutex.Lock()
-	defer a.Store.Mutex.Unlock()
-	return a.Store.Artists
+func (s *AllArtistsService) GetAllArtists() []models.Artist {
+	s.Store.Mutex.Lock()
+	defer s.Store.Mutex.Unlock()
+	return s.Store.Artists
 }
