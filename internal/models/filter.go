@@ -8,3 +8,4 @@ type FilterRequest struct {
 	Members      string `json:"members"`
 	ConcertDate  string `json:"concertDates"`
 }
+// filed to filter
