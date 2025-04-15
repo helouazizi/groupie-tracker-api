@@ -27,8 +27,12 @@ func (s *FilterService) Filter(data models.FilterRequest) ([]models.Artist, erro
 	albumTo, err4 := strconv.Atoi(data.AlbumTo)
 	members, err5 := strconv.Atoi(data.Members)
 	trick := false
+	tric2 := false
 	if creationFrom == 0 && creationTo == 0 && members != 0 && albumFrom != 0 && albumTo != 0 && data.ConcertDate == "" {
 		trick = true
+	}
+	if creationFrom == 0 && creationTo == 0 && members != 0 && albumFrom == 0 && albumTo == 0 && data.ConcertDate != "" {
+		tric2 = true
 	}
 
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil || err5 != nil {
@@ -74,6 +78,10 @@ func (s *FilterService) Filter(data models.FilterRequest) ([]models.Artist, erro
 		if members != 0 {
 			if trick {
 				if len(artist.Members) > members {
+					isMatch = false
+				}
+			} else if tric2 {
+				if len(artist.Members) < members {
 					isMatch = false
 				}
 			} else {
