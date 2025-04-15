@@ -31,5 +31,5 @@ func (s *ArtistsDetailsHandler) GetArtistDetails(w http.ResponseWriter, r *http.
 		utils.RespondWithError(w, http.StatusBadRequest, "artist not found", "artist my be deleted or some thing else")
 		return
 	}
-	utils.RespondWithJSON(w, http.StatusFound, details)
+	utils.RespondWithJSON(w, http.StatusOK, details)
 }
