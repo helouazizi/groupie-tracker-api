@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"go-rest-api/internal/models"
@@ -20,11 +21,13 @@ func NewFilterHandler(filterservice *services.FilterService) *FilterHandler {
 
 func (h *FilterHandler) Filter(w http.ResponseWriter, r *http.Request) {
 	var data models.FilterRequest
+
 	if err := json.NewDecoder(r.Body).Decode(&data); err != nil {
 		logger.LogWithDetails(err)
 		utils.RespondWithError(w, http.StatusBadRequest, "bad request", "some data it incorrect or empty")
 		return
 	}
+	fmt.Println(data)
 	artists, err := h.Service.Filter(data)
 	if err != nil {
 		logger.LogWithDetails(err)

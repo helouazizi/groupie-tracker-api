@@ -1,2 +1,0 @@
-2025/04/13 04:11:25 2025-04-13T04:11:25+01:00 [Function: go-rest-api/internal/handlers.(*FilterHandler).Filter] [Line: 30] error parsing number atoi error
-2025/04/13 05:56:42 2025-04-13T05:56:42+01:00 [Function: go-rest-api/internal/handlers.(*FilterHandler).Filter] [Line: 32] error parsing number atoi error
