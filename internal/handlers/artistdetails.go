@@ -28,7 +28,7 @@ func (s *ArtistsDetailsHandler) GetArtistDetails(w http.ResponseWriter, r *http.
 	details, err := s.Service.GetArtistDetails(id)
 	if err != nil {
 		logger.LogWithDetails(err)
-		utils.RespondWithError(w, http.StatusBadRequest, "artist not found", "artist my be deleted or some thing else")
+		utils.RespondWithError(w, http.StatusBadRequest, "Bad Request", "artist my be deleted or some thing else")
 		return
 	}
 	utils.RespondWithJSON(w, http.StatusOK, details)

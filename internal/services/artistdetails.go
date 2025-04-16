@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"fmt"
 
 	"go-rest-api/internal/models"
 	"go-rest-api/internal/repository"
@@ -16,9 +17,12 @@ func NewArtistDetailsService(store *repository.Store) *ArtistsDetailsService {
 }
 
 func (s *ArtistsDetailsService) GetArtistDetails(id int) (models.ArtistDetails, error) {
+	if id < 1 || id > 52 {
+		//utils.RespondWithError(w,http.StatusBadRequest,"Bad Request","")
+		return models.ArtistDetails{}, fmt.Errorf("bad request")
+	}
 	var details models.ArtistDetails
 	var err error
-
 	s.Store.Wg.Add(4)
 
 	go func() {

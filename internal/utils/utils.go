@@ -46,7 +46,9 @@ func RespondWithError(w http.ResponseWriter, statusCode int, message, details st
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
-	json.NewEncoder(w).Encode(response)
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		RespondWithError(w, http.StatusInternalServerError, "Internal Server Errror", "")
+	}
 }
 
 // Helper function to standardize JSON responses
