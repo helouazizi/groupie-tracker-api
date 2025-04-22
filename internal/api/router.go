@@ -17,24 +17,8 @@ func NewRouter(deps *dependencies.Dependencies) http.Handler {
 }
 
 func registerArtistsRoutes(mux *http.ServeMux, deps *dependencies.Dependencies) {
-	mux.HandleFunc("/api/artists", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case http.MethodGet:
-			id := r.URL.Query().Get("id")
-			find := r.URL.Query().Get("find")
-			if id != "" {
-				deps.ArtistDetailsHandler.GetArtistDetails(w, r)
-			} else if find != "" {
-				deps.SearchHandler.Search(w, r)
-			} else {
-				deps.AllArtistsHandler.GetAllArtists(w, r)
-			}
-		case http.MethodPost:
-			deps.FilterHandler.Filter(w, r)
-		default:
-			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		}
-	})
+	mux.HandleFunc("/api/artists",deps.AllArtistsHandler.GetAllArtists)
+	mux.HandleFunc("/api/artists/details",deps.ArtistDetailsHandler.GetArtistDetails)	
 }
 
 // func registerUserRoutes(mux *http.ServeMux, deps *dependencies.Dependencies) {

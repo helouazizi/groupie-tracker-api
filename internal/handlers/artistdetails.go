@@ -19,6 +19,7 @@ func NewArtistDetailsService(service *services.ArtistsDetailsService) *ArtistsDe
 
 func (s *ArtistsDetailsHandler) GetArtistDetails(w http.ResponseWriter, r *http.Request) {
 	idStr := r.URL.Query().Get("id")
+	// fmt.Println(idStr)
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
 		logger.LogWithDetails(err)

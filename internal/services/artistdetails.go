@@ -17,6 +17,7 @@ func NewArtistDetailsService(store *repository.Store) *ArtistsDetailsService {
 }
 
 func (s *ArtistsDetailsService) GetArtistDetails(id int) (models.ArtistDetails, error) {
+	// fmt.Println(id)
 	if id < 1 || id > 52 {
 		//utils.RespondWithError(w,http.StatusBadRequest,"Bad Request","")
 		return models.ArtistDetails{}, fmt.Errorf("bad request")
