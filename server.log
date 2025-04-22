@@ -16,3 +16,4 @@
 2025/04/16 19:23:44 2025-04-16T19:23:44+01:00 [Function: go-rest-api/internal/handlers.(*ArtistsDetailsHandler).GetArtistDetails] [Line: 30] bad request
 2025/04/16 19:31:06 2025-04-16T19:31:06+01:00 [Function: go-rest-api/internal/handlers.(*ArtistsDetailsHandler).GetArtistDetails] [Line: 30] bad request
 2025/04/22 20:45:39 2025-04-22T20:45:39+01:00 [Function: go-rest-api/internal/handlers.(*ArtistsDetailsHandler).GetArtistDetails] [Line: 31] bad request
+2025/04/22 21:11:55 listen tcp :8080: bind: address already in use
